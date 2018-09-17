@@ -61,7 +61,10 @@
                     var random = Math.floor(Math.random() * 9)
                     console.log('random', random)
                     if (values[random] === "") {
-                        document.getElementById(random).innerHTML = "O"
+                        document.getElementById(random + 1).innerHTML = "O"
+                        computerDone = true
+                    }
+                    if (values.filter(el => el === "").length === 0) {
                         computerDone = true
                     }
                 }
@@ -158,22 +161,20 @@
     </head>
     <body>
         <div class="center">
-            <div style="display:inline-block; margin-right: 40px; margin-top:30px;" id="onePlayer">
+            <div style="display:inline-block; margin-right: 30px; margin-top:30px;" id="onePlayer">
                 <button onClick="toggleTwoPlayer()">One Player</button> 
             </div>
             <div style="display:inline-block; margin-right: 40px; margin-top:30px;" id="twoPlayers">
                 <button onClick="toggleTwoPlayer()">Two Player</button> 
             </div>
-            <div style="display:inline-block; margin-left:110px;">
+            <div style="display:inline-block; margin-left:40px;">
                <h1>Tic Tac Toe</h1> 
             </div>
             <div style="display:inline-block; margin-left: 40px; margin-top:30px;">
                 <button onClick="window.location.reload()">New Game</button> 
             </div>
         </div>
-        <div class="center" id="description">
-            <h3>Two Player Game: Click to Play!</h3>
-        </div>
+        <h3 class="center" id="description">Two Player Game</h3>
         <table style="width:600px; height:500px;">
             <tr>
                 <td id="1" onClick="addXorO(event)"></td>
