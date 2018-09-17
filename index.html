@@ -6,6 +6,7 @@
             var isX = true
             var gameOver = false
             var isEditable = true
+            var twoPlayer = true
             function addXorO(event) {
                 cellClicked = event.srcElement.id
                 if (!hasBeenClicked(cellClicked)) {
@@ -18,6 +19,9 @@
                             document.getElementById(cellClicked).innerHTML = "O"
                             document.getElementById("turn").innerHTML = "X's turn!"
                         }
+                        if (!twoPlayer) {
+                            computerTurn()
+                        }
                         gameOver = checkGameOver()
                         if (gameOver) {
                             if (isX) {
@@ -27,11 +31,40 @@
                             }
                             isEditable = !isEditable
                         }
-                        isX = !isX
+                        if (twoPlayer) {
+                           isX = !isX 
+                        }
                     }
                     
                 }
                 
+            }
+            
+            function toggleTwoPlayer() {
+                twoPlayer = !twoPlayer
+                if (twoPlayer) {
+                    document.getElementById("description").innerHTML = "Two Player Game"
+                } else {
+                    document.getElementById("description").innerHTML = "One Player Game"
+                }
+            }
+            
+            function computerTurn() {
+                computerDone = false
+                console.log('computer turn')
+                values = []
+                for (i = 1; i < 10; i++) {
+                    html = document.getElementById(i.toString()).innerHTML
+                    values.push(html)
+                }
+                while (!computerDone) {
+                    var random = Math.floor(Math.random() * 9)
+                    console.log('random', random)
+                    if (values[random] === "") {
+                        document.getElementById(random).innerHTML = "O"
+                        computerDone = true
+                    }
+                }
             }
             
             function hasBeenClicked(cell) {
@@ -125,6 +158,12 @@
     </head>
     <body>
         <div class="center">
+            <div style="display:inline-block; margin-right: 40px; margin-top:30px;" id="onePlayer">
+                <button onClick="toggleTwoPlayer()">One Player</button> 
+            </div>
+            <div style="display:inline-block; margin-right: 40px; margin-top:30px;" id="twoPlayers">
+                <button onClick="toggleTwoPlayer()">Two Player</button> 
+            </div>
             <div style="display:inline-block; margin-left:110px;">
                <h1>Tic Tac Toe</h1> 
             </div>
@@ -132,8 +171,8 @@
                 <button onClick="window.location.reload()">New Game</button> 
             </div>
         </div>
-        <div class="center">
-            <h3>Click to Play!</h3>
+        <div class="center" id="description">
+            <h3>Two Player Game: Click to Play!</h3>
         </div>
         <table style="width:600px; height:500px;">
             <tr>
