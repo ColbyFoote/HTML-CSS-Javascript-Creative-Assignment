@@ -92,22 +92,18 @@
                 alert("button was clicked");
           } 
           
-            function toggleTwoPlayer() {
-
-                twoPlayer = !twoPlayer
-                var twoplayers = false;
-
-                if (twoPlayer) {
-                    twoplayers = true;
-                    document.getElementById("description").innerHTML = "Two Player Game";
-                    
-
+            function toggleTwoPlayer(event) {
+                if  (event.srcElement.id === "onePlayer") {
+                    twoPlayer = false
+                } else {
+                    twoPlayer = true
                 }
-                else if (twoplayers==false) 
+                if (twoPlayer) {
+                    document.getElementById("description").innerHTML = "Two Player Game";
+                }
+                else
                 {
-                    twoplayers= false;
                     document.getElementById("description").innerHTML = "One Player Game"
-
                 }
             }
             function computerTurn() {
@@ -319,9 +315,7 @@
                     return false
 
                 } else {
-
                     return false
-
                 }
 
             }
@@ -340,14 +334,11 @@
         </nav>
 
         <div class="center">
-            <div class="button" style="display:inline-block;margin-right: 60x; margin-top:60px;id="onePlayer">
-
-                <button onClick="toggleTwoPlayer()&&clicked()">One Player</button> ;
+            <div class="button" style="display:inline-block;margin-right: 60x; margin-top:60px;">
+                <button onClick="toggleTwoPlayer(event)" id="onePlayer">One Player</button>
             </div>
-            
-            <div class="button" style="display:inline-block;margin-right: 60px; margin-top:60px;id="twoPlayers">
-
-                <button onClick="toggleTwoPlayer()&&clicked">Two Player</button> 
+            <div class="button" style="display:inline-block;margin-right: 60px; margin-top:60px;">
+                <button onClick="toggleTwoPlayer(event)" id="twoPlayers">Two Player</button> 
             </div>
             
             <div style="display:inline-block; margin-left:40px;">
@@ -370,7 +361,7 @@
 
             <tr>
 
-                <td id="1"; onClick="addXorO(event)"></td>
+                <td id="1"; onClick="addXorO(event)" width="33%" height="33%"></td>
 
                 <td id="2";class="vertical" onClick="addXorO(event)"></td>
 
@@ -380,7 +371,7 @@
 
             <tr>
 
-                <td id="4";class="horizontal" onClick="addXorO(event)"></td>
+                <td id="4";class="horizontal" onClick="addXorO(event)" width="33%" height="33%"></td>
 
                 <td id="5";class="vertical horizontal" onClick="addXorO(event)"></td>
 
@@ -390,7 +381,7 @@
 
             <tr>
 
-                <td id="7"; onClick="addXorO(event)"></td>
+                <td id="7"; onClick="addXorO(event)" width="33%" height="33%"></td>
 
                 <td id="8";class="vertical" onClick="addXorO(event)"></td>
 
